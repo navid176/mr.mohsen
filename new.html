@@ -1,0 +1,276 @@
+<div>
+  {{-- Do your work, then step back. --}}
+  <div class="details d-flex flex-wrap">
+      <!-- order detail list -->
+
+  <div class="col-xl-12 d-flex flex-xl-column">
+  <div class="col-sm-12 col-xl-3">
+          <h1>Setting</h1>
+          <hr>
+          <p style="color:green;">{{$message}}</p>
+          <br>
+          <i>I want to <a style="color:red;cursor: pointer;font-weight: 500;" wire:click="pchange">{{$changetext}}</a>!</i>
+          <hr>
+          <br>
+          <form wire:submit.prevent="change()">
+
+              <div class="form-group" style="display: {{$getchange}};">
+                  <label for="exampleFormControlInput1">Old Password</label>
+                  <input type="text" name="title" wire:model="oldpassword" value="" class="form-control" id="exampleFormControlInput1" placeholder="">
+
+              </div>
+              <div class="form-group" style="display: {{$getchange}};">
+                  <label for="exampleFormControlInput1">New Password</label>
+                  <input type="text" name="title" wire:model="newpassword" value="" class="form-control" id="exampleFormControlInput1" placeholder="">
+
+              </div>
+              <div class="form-group" style="display: {{$getchange}};">
+                  <label for="exampleFormControlInput1">Confirm New Password</label>
+                  <input type="text" name="title" wire:model="confirmpassword" wire:change="confirm()" value="" class="form-control" id="exampleFormControlInput1" placeholder="">
+              </div>
+              <div>
+                  <p style="display: {{$notconfirm}};">{{$errconf}}</p>
+              </div>
+              <div class="form-group mt-3">
+                  <label for="exampleFormControlInput1">Language</label>
+                  <br>
+
+                  <select class="form-control" wire:model="language">
+                      <option value="en">English</option>
+                      <option value="fa">Farsi</option>
+                      <option value="tr">Turkish</option>
+                      <option value="ar">Arabic</option>
+                  </select>
+              </div>
+              {{Session::get('user_id')}}
+              <div class="form-group">
+                  <label for="exampleFormControlInput1">Study Fields</label>
+                  <br>
+
+                  <select class="form-control" wire:model="study_field">
+                      @foreach($expertlist as $list)
+                      <option value="{{$list->id}}" selected="{{App\Models\User::isstudyselect($list->id)}}">{{$list->name}}</option>
+                      @endforeach
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Phone number</label>
+                  <input type="text" name="title" wire:model="phone" class="form-control" id="exampleFormControlInput1" placeholder="">
+                  @error('phone') <span class="error">{{ $message }}</span> @enderror
+              </div>
+              <div class="form-group">
+                  <button type="submit" class="btns">Save Changes</button>
+              </div>
+
+          </form>
+      </div>
+    <div class="col-md-12 col-xl-3 mt-6">
+      <div class="forms d-flex">
+        <div class="w-100 p-2 m-t-65">
+          <div class="p-2">
+            <label for="exampleDataList" class="form-label"
+              >Datalist example</label
+            >
+            <input
+              class="form-control"
+              list="datalistOptions"
+              id="exampleDataList"
+              placeholder="Type to search..."
+            />
+            <datalist id="datalistOptions">
+              <option value="San Francisco"> </option>
+              <option value="New York"> </option>
+              <option value="Seattle"> </option>
+              <option value="Los Angeles"> </option>
+              <option value="Chicago"> </option>
+            </datalist>
+          </div>
+          <div class="p-2">
+            <label for="exampleDataList" class="form-label"
+              >Datalist example</label
+            >
+            <input
+              class="form-control"
+              list="datalistOptions"
+              id="exampleDataList"
+              placeholder="Type to search..."
+            />
+            <datalist id="datalistOptions">
+              <option value="San Francisco"> </option>
+              <option value="New York"> </option>
+              <option value="Seattle"> </option>
+              <option value="Los Angeles"> </option>
+              <option value="Chicago"> </option>
+            </datalist>
+          </div>
+          <div class="p-2">
+            <label for="exampleDataList" class="form-label"
+              >Datalist example</label
+            >
+            <input
+              class="form-control"
+              list="datalistOptions"
+              id="exampleDataList"
+              placeholder="Type to search..."
+            />
+            <datalist id="datalistOptions">
+              <option value="San Francisco"> </option>
+              <option value="New York"> </option>
+              <option value="Seattle"> </option>
+              <option value="Los Angeles"> </option>
+              <option value="Chicago"> </option>
+            </datalist>
+          </div>
+          <div class="p-2">
+            <label for="exampleDataList" class="form-label"
+              >Datalist example</label
+            >
+            <input
+              class="form-control"
+              list="datalistOptions"
+              id="exampleDataList"
+              placeholder="Type to search..."
+            />
+            <datalist id="datalistOptions">
+              <option value="San Francisco"> </option>
+              <option value="New York"> </option>
+              <option value="Seattle"> </option>
+              <option value="Los Angeles"> </option>
+              <option value="Chicago"> </option>
+            </datalist>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-xl-6">
+      <div class="d-flex justify-content-center">
+        <p class="text-muted">Work Experience</p>
+      </div>
+      <div class="cards d-flex flex-wrap justify-content-around">
+        <div class="card m-3" style="width: 15rem;">
+          <div class="card-body">
+            <!-- Button trigger modal -->
+
+            <div class="custom-btn">
+              <button
+                type="button"
+                class="btn"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Add Your Experience
+              </button>
+            </div>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="d-flex flex-column">
+                      <label for="formFile" class="form-label"
+                        >Title</label
+                      >
+                      <input type="text" name="" id="" />
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="formFile" class="form-label"
+                        >Description</label
+                      >
+                      <textarea
+                        id="w3review"
+                        name="w3review"
+                        rows="4"
+                  
+                      >
+                      </textarea>
+                    </div>
+                    <div>
+                      <div class="d-flex flex-column">
+                        <label for="formFile" class="form-label"
+                          >Default file input example</label
+                        >
+                        <input
+                          class=""
+                          type="file"
+                          id="formFile"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 15rem;">
+          <img
+            src="assets/images/what_is_image_Processing.avif"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up
+              the bulk of the card's content.
+            </p>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 15rem;">
+          <img
+            src="assets/images/what_is_image_Processing.avif"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up
+              the bulk of the card's content.
+            </p>
+          </div>
+        </div>
+        <div class="card m-3" style="width: 15rem;">
+          <img
+            src="assets/images/what_is_image_Processing.avif"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <p class="card-text">
+              Some quick example text to build on the card title and make up
+              the bulk of the card's content.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
